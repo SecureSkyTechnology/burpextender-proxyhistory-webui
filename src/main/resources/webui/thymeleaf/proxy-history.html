@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title th:inline="text">HTTP Detail : [[${logContext}]]/[[${messageRef}]]</title>
+</head>
+<body>
+<p>
+<a th:href="@{/}">back</a>
+</p>
+
+<h2>Proxy History HTTP Detail</h2>
+<table border="1">
+<thead>
+<tr>
+<th title="複数回のburpログを区別するためのバケットコード">ログバケット</th>
+<th title="Burp - Proxy - HTTP History のヒストリ番号">#</th>
+<th>METHOD</th>
+<th>URL</th>
+<th>ステータスコード</th>
+<th>送信日時</th>
+<th>受信日時</th>
+</tr>
+</thead>
+<tr th:object="${proxyHistory}">
+<td th:text="*{logContext}"></td>
+<td th:text="*{messageRef}"></td>
+<td th:text="*{requestMethod}"></td>
+<td th:text="*{url}"></td>
+<td th:text="*{responseStatusCode}"></td>
+<td th:text="*{#dates.format(sendAt, 'yyyy-MM-dd HH:mm:ss.SSS')}"></td>
+<td th:text="*{#dates.format(receivedAt, 'yyyy-MM-dd HH:mm:ss.SSS')}"></td>
+</tr>
+</table>
+
+<form method="POST" name="updateCharset">
+<input type="hidden" th:field="${proxyHistory.requestCharset}">
+<input type="hidden" th:field="${proxyHistory.responseCharset}">
+</form>
+<script>
+function charset_on_change() {
+  var requestCharsetSelect = document.getElementById('request-charset-select');
+  var responseCharsetSelect = document.getElementById('response-charset-select');
+  var reqv = requestCharsetSelect.options[requestCharsetSelect.selectedIndex].value;
+  var resv = responseCharsetSelect.options[responseCharsetSelect.selectedIndex].value;
+  document.forms.updateCharset['requestCharset'].value = reqv;
+  document.forms.updateCharset['responseCharset'].value = resv;
+  document.forms.updateCharset.submit();
+}
+</script>
+
+<hr />
+
+<h4>request</h4>
+<select id="request-charset-select" th:field="${proxyHistory.requestCharset}" onchange="charset_on_change()">
+<option th:each="charsetName : ${charsetNames}" th:value="${charsetName}" th:text="${charsetName}">charsetName</option>
+</select>
+<br />
+<textarea th:field="${proxyHistory.requestString}" style="width: 80%; height: 300px;" readonly></textarea>
+
+<hr />
+
+<h4>response</h4>
+<select id="response-charset-select" th:field="${proxyHistory.responseCharset}" onchange="charset_on_change()">
+<option th:each="charsetName : ${charsetNames}" th:value="${charsetName}" th:text="${charsetName}">charsetName</option>
+</select>
+<br />
+<textarea th:field="${proxyHistory.responseString}" style="width: 80%; height: 300px;" readonly></textarea>
+
+<hr />
+
+<p>
+<a th:href="@{/}">back</a>
+</p>
+
+<p class="footer">
+<img src="/staticfiles/images/sst-logo.png" />
+</p>
+
+</body>
+</html>
