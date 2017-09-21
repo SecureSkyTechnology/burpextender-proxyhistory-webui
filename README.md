@@ -6,8 +6,8 @@ Burp Extender : Proxy History viewer in Web UI
 
 * Proxy History のHTTP通信を独自のログに書き込み、Burp拡張内部で起動する独自WebUIで表示できるようにします。
 * 独自WebUI上からリクエスト/レスポンスの文字コードを変更できます。
-  * Burp側で文字化けしてしまっても、独自WebUI上で正しい文字コードで表示できるようになります。
-  * Burpの画面上でコピペすると、日本語などで切れてしまいますが、独自WebUI上ではtextareaタグの中で表示するので、安全にコピペできます。
+  * Burp側で文字化けしてしまっても、独自WebUI上で正しい文字コードで表示できるようになります。
+  * Burpの画面上でコピペすると、日本語などで切れてしまいますが、独自WebUI上ではtextareaタグの中で表示するので、安全にコピペできます。
 
 About Burp Extender : https://portswigger.net/burp/help/extender.html
 
