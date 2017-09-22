@@ -9,7 +9,7 @@
 
   <name>burpextender-proxyhistory-webui</name>
   <description>Burp Extender : Proxy History Log Viewer with embedded Web UI</description>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/SecureSkyTechnology/burpextender-proxyhistory-webui</url>
 
   <organization>
     <name>Secure Sky Technology, Inc.</name>
