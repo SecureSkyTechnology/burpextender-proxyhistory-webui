@@ -86,13 +86,7 @@ https://github.com/SecureSkyTechnology/howto-eclipse-setup の `setup-type1` を
 * Ecipseのインストール
 * Clean Up/Formatter 設定
 * 必須プラグイン Lombok / オプションプラグイン Swing Designer のインストール 
-
-Eclipseにインポートする:
-
-1. gitでリポジトリをcloneする。
-2. Eclipseを起動し、File -> Import を開く。
-   1. import source で Maven -> Existing Maven Projects を選択
-   2. Root Directory で本ディレクトリを選び、pom.xmlが認識されればそのままインポートできる。
+* GitでcloneしたMavenプロジェクトのインポート 
 
  Swing Designer 備考:
 
